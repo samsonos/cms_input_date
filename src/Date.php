@@ -16,7 +16,7 @@ class Date extends Field
     /** @var string Module identifier */
     protected $id = 'samson_cms_input_date';
 
-    public function numericValue($input)
+    public function convert($input)
     {
         // Convert to timestamp
         return strtotime($input);
