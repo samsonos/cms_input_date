@@ -4,27 +4,31 @@ namespace samsoncms\input\date;
 use samsoncms\input\Field;
 
 /**
- * Generic SamsonCMS input field
- * @author Vitaly Iegorov<egorov@samsonos.com>
- *
+ * Date SamsonCMS input field
+ * @author Vitaly Iegorov <egorov@samsonos.com>
+ * @author Maxim Omelchenko <omelchenko@samsonos.com>
  */
 class Date extends Field
 {
-//    /** @var  int Field type identifier */
-//    protected static $type = 3;
-//
-//    /** @var string Module identifier */
-//    protected $id = 'samson_cms_input_date';
+    /** Database object field name */
+    protected $param = 'numeric_value';
 
     /**
-     * Function to convert
+     * Function to convert field value
      *
-     * @param mixed $input
-     * @return int
+     * @param mixed $value
+     * @return int Time value represented as int
      */
-    public function convert($input)
+    public function convert($value)
     {
         // Convert to timestamp
-        return strtotime($input);
+        return strtotime($value);
+    }
+
+    /** {@inheritdoc} */
+    public function value()
+    {
+        // Return formatted date
+        return date('Y-m-d', $this->dbObject[$this->param]);
     }
 }
