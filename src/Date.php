@@ -29,6 +29,6 @@ class Date extends Field
     public function value()
     {
         // Return formatted date
-        return date('Y-m-d', $this->dbObject[$this->param]);
+        return date('Y-m-d', strtotime($this->dbObject[$this->param]));
     }
 }
