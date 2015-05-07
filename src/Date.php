@@ -28,7 +28,11 @@ class Date extends Field
     /** {@inheritdoc} */
     public function value()
     {
+        $ts = $this->dbObject[$this->param];
+
         // Return formatted date
-        return date('Y-m-d', strtotime($this->dbObject[$this->param]));
+        return date('Y-m-d',
+            ((string) (int) $ts === $ts) ? $ts : strtotime($ts)
+        );
     }
 }
